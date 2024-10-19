@@ -3,8 +3,6 @@ import React from "react";
 import NavbarWrapper from "./NavbarWrapper";
 import AuthDropdown from "./AuthDropdown";
 import IconButton from "../ui/IconButton";
-import Cart from "@/icons/Cart";
-import User from "@/icons/User";
 import MiniCart from "./MiniCart";
 
 type Menu = {

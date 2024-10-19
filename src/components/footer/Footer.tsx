@@ -3,29 +3,29 @@ import React from "react";
 import SocialLinks from "./SocialLinks";
 import Button from "../ui/Button";
 
-const menuGroups = [
-  {
-    groupTitle: "About Us",
-    items: [
-      {
-        title: "Company History",
-        path: "/about",
-      },
-      {
-        title: "Meet the Team",
-        path: "/products",
-      },
-      {
-        title: "Employee Handbook",
-        path: "/contact",
-      },
-      {
-        title: "Careers",
-        path: "/help",
-      },
-    ],
-  },
-];
+// const menuGroups = [
+//   {
+//     groupTitle: "About Us",
+//     items: [
+//       {
+//         title: "Company History",
+//         path: "/about",
+//       },
+//       {
+//         title: "Meet the Team",
+//         path: "/products",
+//       },
+//       {
+//         title: "Employee Handbook",
+//         path: "/contact",
+//       },
+//       {
+//         title: "Careers",
+//         path: "/help",
+//       },
+//     ],
+//   },
+// ];
 
 const Footer = () => {
   return (

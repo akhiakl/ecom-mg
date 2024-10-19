@@ -13,4 +13,6 @@ const Select = forwardRef<
   </select>
 ));
 
+Select.displayName = "Select";
+
 export default Select;
