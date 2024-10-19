@@ -62,7 +62,7 @@ const Content = ({ children, className, ...props }: ContentProps) => {
       )}
       {...props}
     >
-      <div className="p-2 flex-1">{children}</div>
+      {isOpen && <div className="p-2 flex-1">{children}</div>}
     </div>
   );
 };
