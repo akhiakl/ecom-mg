@@ -10,6 +10,5 @@ export const getDeviceType = async () => {
   const headersList = headers();
   const userAgent = headersList.get("user-agent") || undefined;
   const { device } = userAgentFromString(userAgent);
-  console.log(device?.type);
   return device?.type;
 };

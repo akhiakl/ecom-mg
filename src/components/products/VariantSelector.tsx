@@ -1,18 +1,15 @@
+import { ProductOptionValue } from "@/types/product";
 import clsx from "clsx";
 import React from "react";
 
-type SelectorProps = {
-  label?: string;
-  id: string;
-  value: string;
-  name: string;
-  type: "color" | "text";
+type SelectorProps = ProductOptionValue & {
+  name?: string;
 };
 type Props = {
   label?: string;
   id: string;
   productId: string;
-  items: Omit<SelectorProps, "name">[];
+  items: ProductOptionValue[];
 };
 
 const Selector = ({ type, value, id, label, name }: SelectorProps) => (

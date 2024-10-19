@@ -1,7 +1,5 @@
-import type { TypedDocumentString } from "./graphql";
-
 export async function execute<TResult, TVariables>(
-  query: TypedDocumentString<TResult, TVariables>,
+  query: string,
   ...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
 ) {
   const response = await fetch("https://www.aemshop.net/graphql", {
