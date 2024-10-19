@@ -29,18 +29,19 @@ const ProductCard = ({ product, imgPriority }: Props) => {
       className="group block overflow-hidden relative bg-gray-100 rounded-sm"
     >
       {product.badge?.text && (
-        <span className="absolute right-0 top-0 rounded-bl-lg bg-rose-600 px-4 py-1 font-medium text-white shadow-md shadow-gray-800">
+        <span className="absolute right-0 top-0 z-10 rounded-bl-lg bg-rose-600 px-4 py-1 font-medium text-white shadow-md shadow-gray-800">
           {product.badge?.text}
         </span>
       )}
-      <Image
-        alt={product.imageAlt}
-        src={product.imageSrc}
-        width={300}
-        height={450}
-        priority={imgPriority}
-        className="h-[350px] w-full object-contain transition duration-500 group-hover:scale-105"
-      />
+      <div className="h-[350px] w-full relative">
+        <Image
+          alt={product.imageAlt}
+          src={product.imageSrc}
+          fill
+          priority={imgPriority}
+          className="object-contain transition duration-500 group-hover:scale-105"
+        />
+      </div>
 
       <div className="relative border border-1 border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 p-6 pt-3">
         <h3 className="text-base group-hover:underline group-hover:underline-offset-4">
