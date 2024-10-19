@@ -2,8 +2,9 @@ import React, {
   ButtonHTMLAttributes,
   AnchorHTMLAttributes,
   forwardRef,
+  ForwardedRef,
 } from "react";
-import { clsx } from "clsx";
+import clsx from "clsx";
 import Link, { LinkProps as InternalLinkProps } from "next/link";
 
 type ButtonVariant =
@@ -33,7 +34,11 @@ type ButtonProps = (LinkProps | HtmlButtonProps) & {
   disabled?: boolean;
 };
 
-const Button = forwardRef<HTMLButtonElement | typeof Link, ButtonProps>(
+const isLinkProps = (props: ButtonProps): props is LinkProps => {
+  return "href" in props;
+};
+
+const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   (
     {
       variant = "primary",
@@ -83,9 +88,13 @@ const Button = forwardRef<HTMLButtonElement | typeof Link, ButtonProps>(
       className
     );
 
-    if ("href" in props) {
+    if (isLinkProps(props)) {
       return (
-        <Link ref={forwardedRef} className={buttonClasses} {...props}>
+        <Link
+          ref={forwardedRef as ForwardedRef<HTMLAnchorElement>}
+          className={buttonClasses}
+          {...props}
+        >
           {children}
         </Link>
       );
@@ -93,10 +102,10 @@ const Button = forwardRef<HTMLButtonElement | typeof Link, ButtonProps>(
 
     return (
       <button
-        ref={forwardedRef}
+        ref={forwardedRef as ForwardedRef<HTMLButtonElement>}
         className={buttonClasses}
         disabled={disabled || isLoading}
-        {...props}
+        {...(props as HtmlButtonProps)}
       >
         {isLoading && (
           <svg
