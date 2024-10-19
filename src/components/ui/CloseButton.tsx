@@ -15,4 +15,6 @@ const CloseButton = forwardRef<
   </button>
 ));
 
+CloseButton.displayName = "CloseButton";
+
 export default CloseButton;

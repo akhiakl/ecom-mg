@@ -8,11 +8,11 @@ import ProductList from "@/components/products/ProductList";
 //   }))
 // }
 
-type CategoryPageProps = {
-  params: {
-    handle: string[];
-  };
-};
-export default function CategoryPage({ params }: CategoryPageProps) {
+// type CategoryPageProps = {
+//   params: {
+//     handle: string[];
+//   };
+// };
+export default function CategoryPage() {
   return <ProductList />;
 }

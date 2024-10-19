@@ -29,10 +29,14 @@ const Anchor = ({ children, className, onClick, ...props }: AnchorProps) => {
   return (
     <button
       type="button"
-      className="overflow-hidden block"
+      className={clsx("overflow-hidden block", className)}
       onClick={(e) => {
         onClick?.(e);
-        isOpen ? onClose?.() : onOpen?.();
+        if (isOpen) {
+          onClose?.();
+          return;
+        }
+        onOpen?.();
       }}
       {...props}
     >

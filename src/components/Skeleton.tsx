@@ -21,4 +21,6 @@ const Skeleton = forwardRef<HTMLDivElement, Props>(
   }
 );
 
+Skeleton.displayName = "Skeleton";
+
 export default Skeleton;

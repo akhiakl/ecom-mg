@@ -33,7 +33,7 @@ type ButtonProps = (LinkProps | HtmlButtonProps) & {
   disabled?: boolean;
 };
 
-const Button = forwardRef<any, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement | typeof Link, ButtonProps>(
   (
     {
       variant = "primary",
@@ -42,7 +42,6 @@ const Button = forwardRef<any, ButtonProps>(
       disabled,
       children,
       className,
-      onClick,
       ...props
     },
     forwardedRef
@@ -119,5 +118,7 @@ const Button = forwardRef<any, ButtonProps>(
     );
   }
 );
+
+Button.displayName = "Button";
 
 export default Button;

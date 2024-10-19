@@ -6,9 +6,7 @@ import Dropdown from "../DropDown";
 import Close from "@/icons/Close";
 import Image from "next/image";
 
-type Props = {};
-
-const MiniCart = (props: Props) => {
+const MiniCart = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Dropdown

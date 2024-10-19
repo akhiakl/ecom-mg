@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import Delete from "./Delete";
 
 const iconsList = {
   hamburger: dynamic(() => import("./Hamburger").then((mod) => mod.default)),
