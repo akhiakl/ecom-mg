@@ -1,4 +1,4 @@
-import { fetchProducts } from "@/actions/product";
+import { fetchCategory } from "@/actions/product";
 import ProductList from "@/components/products/ProductList";
 
 export async function generateStaticParams() {
@@ -9,12 +9,28 @@ export async function generateStaticParams() {
   ];
 }
 
-// type CategoryPageProps = {
-//   params: {
-//     handle: string[];
-//   };
-// };
-export default async function CategoryPage() {
-  const products = await fetchProducts();
-  return <ProductList products={products} />;
+type CategoryPageProps = {
+  params: {
+    handle: string[];
+  };
+};
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { name, description, availableFilters, products } = await fetchCategory(
+    params.handle.join("/")
+  );
+  return (
+    <section>
+      <div className="mx-auto container px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <header>
+          <h2 className="text-xl font-bold sm:text-3xl">{name}</h2>
+
+          {description && (
+            <p className="mt-4 max-w-md text-gray-500">{description}</p>
+          )}
+        </header>
+
+        <ProductList filters={availableFilters} products={products ?? []} />
+      </div>
+    </section>
+  );
 }

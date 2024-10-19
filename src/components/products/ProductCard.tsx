@@ -13,7 +13,7 @@ const ProductCard = ({ product, imgPriority }: Props) => {
   return (
     <a
       href={`/products/${product.urlKey}`}
-      className="group block overflow-hidden relative bg-gray-100 rounded-sm"
+      className="group block overflow-hidden relative bg-white rounded-sm"
     >
       {product.badge?.text && (
         <span className="absolute right-0 top-0 z-10 rounded-bl-lg bg-rose-600 px-4 py-1 font-medium text-white shadow-md shadow-gray-800">
@@ -41,79 +41,16 @@ const ProductCard = ({ product, imgPriority }: Props) => {
 
           <span className="tracking-wider">{product.price}</span>
         </p>
-        <div className="mt-2 flex flex-col gap-2.5">
-          <VariantSelector
-            items={[
-              {
-                label: "XS",
-                id: "SizeXS",
-                value: "#595759",
-                type: "text",
-              },
-              {
-                label: "S",
-                id: "SizeS",
-                value: "#d2d3d4",
-                type: "text",
-              },
-              {
-                label: "M",
-                id: "SizeM",
-                value: "#d89f97",
-                type: "text",
-              },
-              {
-                label: "L",
-                id: "SizeL",
-                value: "#afbfab",
-                type: "text",
-              },
-              {
-                label: "XL",
-                id: "SizeXL",
-                value: "#91a5bb",
-                type: "text",
-              },
-            ]}
-            id="colose_123"
-            productId={String(product.id)}
-          />
-          <VariantSelector
-            items={[
-              {
-                label: "Space Gray",
-                id: "ColorSg",
-                value: "#595759",
-                type: "color",
-              },
-              {
-                label: "Silver",
-                id: "ColorS",
-                value: "#d2d3d4",
-                type: "color",
-              },
-              {
-                label: "Pink",
-                id: "ColorP",
-                value: "#d89f97",
-                type: "color",
-              },
-              {
-                label: "Green",
-                id: "ColorG",
-                value: "#afbfab",
-                type: "color",
-              },
-              {
-                label: "Blue",
-                id: "ColorSb",
-                value: "#91a5bb",
-                type: "color",
-              },
-            ]}
-            id="coloe_123"
-            productId={String(product.id)}
-          />
+        <div className="mt-2 flex flex-col gap-2.5 min-h-16">
+          {product.options?.map((option) => (
+            <VariantSelector
+              items={option.values ?? []}
+              productId={product.id}
+              key={option.id}
+              label={option.label}
+              id={option.id!}
+            />
+          ))}
         </div>
         <div className="mt-4 flex gap-4">
           <Button size="sm" variant="primary">
