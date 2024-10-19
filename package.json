@@ -10,19 +10,21 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "graphql": "^16.9.0",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@0no-co/graphqlsp": "^1.12.16",
     "@graphql-codegen/cli": "^5.0.3",
+    "@graphql-codegen/schema-ast": "^4.1.0",
     "@tailwindcss/forms": "^0.5.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "graphql": "^16.9.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

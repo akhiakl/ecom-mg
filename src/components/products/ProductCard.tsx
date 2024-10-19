@@ -2,20 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Button from "../ui/Button";
 import VariantSelector from "./VariantSelector";
-
-type Product = {
-  id: number;
-  name: string;
-  href: string;
-  imageSrc: string;
-  imageAlt: string;
-  price: string;
-  color: string;
-  badge?: {
-    color?: string;
-    text: string;
-  };
-};
+import { Product } from "@/types/product";
 
 type Props = {
   product: Product;
@@ -25,7 +12,7 @@ type Props = {
 const ProductCard = ({ product, imgPriority }: Props) => {
   return (
     <a
-      href={product.href}
+      href={`/products/${product.urlKey}`}
       className="group block overflow-hidden relative bg-gray-100 rounded-sm"
     >
       {product.badge?.text && (
@@ -35,10 +22,11 @@ const ProductCard = ({ product, imgPriority }: Props) => {
       )}
       <div className="h-[350px] w-full relative">
         <Image
-          alt={product.imageAlt}
-          src={product.imageSrc}
+          alt={product.imageAlt!}
+          src={product.imageSrc!}
           fill
           priority={imgPriority}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           className="object-contain transition duration-500 group-hover:scale-105"
         />
       </div>
