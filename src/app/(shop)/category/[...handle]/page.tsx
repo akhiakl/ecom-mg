@@ -1,3 +1,4 @@
+import { fetchProducts } from "@/actions/product";
 import ProductList from "@/components/products/ProductList";
 
 export async function generateStaticParams() {
@@ -13,6 +14,7 @@ export async function generateStaticParams() {
 //     handle: string[];
 //   };
 // };
-export default function CategoryPage() {
-  return <ProductList />;
+export default async function CategoryPage() {
+  const products = await fetchProducts();
+  return <ProductList products={products} />;
 }

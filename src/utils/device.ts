@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import { userAgentFromString } from "next/server";
 
-export const getDeviceType = () => {
+export const getDeviceType = async () => {
   if (typeof process === "undefined") {
     return false;
   }
