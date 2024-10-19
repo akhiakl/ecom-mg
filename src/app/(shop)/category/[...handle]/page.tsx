@@ -1,12 +1,12 @@
 import ProductList from "@/components/products/ProductList";
 
-// export async function generateStaticParams() {
-//   const posts = await fetch('https://.../posts').then((res) => res.json())
-
-//   return posts.map((post) => ({
-//     slug: post.slug,
-//   }))
-// }
+export async function generateStaticParams() {
+  return [
+    {
+      handle: ["1"],
+    },
+  ];
+}
 
 // type CategoryPageProps = {
 //   params: {
