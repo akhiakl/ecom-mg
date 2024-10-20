@@ -21,7 +21,7 @@ const MiniCart = () => {
         aria-modal="true"
         role="dialog"
         tabIndex={-1}
-        className="!fixed md:!absolute w-screen md:max-w-md inset-0 md:inset-auto md:end-0 p-4"
+        className="!fixed inset-0 w-screen p-4 md:!absolute md:inset-auto md:end-0 md:max-w-md"
       >
         <button
           onClick={() => setIsOpen(false)}

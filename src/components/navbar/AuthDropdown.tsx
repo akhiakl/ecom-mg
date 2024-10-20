@@ -47,7 +47,7 @@ const AuthDropdown = ({ className }: Props) => {
                   document.documentElement.getAttribute("data-mode") === "dark";
                 document.documentElement.setAttribute(
                   "data-mode",
-                  isDarkNow ? "light" : "dark"
+                  isDarkNow ? "light" : "dark",
                 );
               },
               icon: "logout",
