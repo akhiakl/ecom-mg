@@ -46,7 +46,7 @@ const MenuLink = ({
     return (
       <button
         type="button"
-        className={clsx(linkClass, "w-full flex items-center gap-2")}
+        className={clsx(linkClass, "flex w-full items-center gap-2")}
         role="menuitem"
         onClick={() => {
           onClick?.();
