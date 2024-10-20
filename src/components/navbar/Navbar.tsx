@@ -18,7 +18,7 @@ const menu: Menu[] = [
 
 const Navbar = () => (
   <NavbarWrapper>
-    <div className="block md:hidden mr-5 order-first">
+    <div className="order-first mr-5 block md:hidden">
       <IconButton
         icon="hamburger"
         className="bg-gray-100"
@@ -26,7 +26,7 @@ const Navbar = () => (
       />
     </div>
     {menu.length ? (
-      <nav aria-label="Global" className="hidden md:block mr-auto">
+      <nav aria-label="Global" className="mr-auto hidden md:block">
         <ul className="flex items-center gap-6 text-sm">
           {menu.map((item: Menu) => (
             <li key={item.title}>
@@ -42,7 +42,7 @@ const Navbar = () => (
         </ul>
       </nav>
     ) : null}
-    <div className="flex items-center mx-5 text-gray-700 dark:text-gray-50 gap-5">
+    <div className="mx-5 flex items-center gap-5 text-gray-700 dark:text-gray-50">
       <MiniCart />
       <AuthDropdown />
     </div>

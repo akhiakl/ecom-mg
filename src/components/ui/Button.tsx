@@ -49,7 +49,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
       className,
       ...props
     },
-    forwardedRef
+    forwardedRef,
   ) => {
     const baseStyles =
       "block rounded border transition text-sm font-medium focus:outline-none focus:ring";
@@ -84,8 +84,8 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
       { [baseStyles]: variant !== "link" },
       variantStyles[variant],
       sizeStyles[size],
-      { "opacity-50 cursor-not-allowed": disabled },
-      className
+      { "cursor-not-allowed opacity-50": disabled },
+      className,
     );
 
     if (isLinkProps(props)) {
@@ -111,7 +111,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
           <svg
             aria-hidden="true"
             role="status"
-            className="inline w-4 h-4 mr-2 animate-spin"
+            className="mr-2 inline h-4 w-4 animate-spin"
             viewBox="0 0 100 101"
             fill="none"
           >
@@ -125,7 +125,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
         {children}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";
