@@ -15,15 +15,15 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       <button
         ref={forwardedRef}
         className={clsx(
-          "rounded border border-gray-100 inline-flex size-10 items-center justify-center text-gray-600 dark:border-gray-400 dark:text-white transition hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-white/90",
-          className
+          "inline-flex size-10 items-center justify-center rounded border border-gray-100 text-gray-600 transition hover:bg-gray-50 hover:text-gray-700 dark:border-gray-400 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white/90",
+          className,
         )}
         {...props}
       >
         <IconComponent {...iconOptions} />
       </button>
     );
-  }
+  },
 );
 
 IconButton.displayName = "IconButton";
