@@ -1,5 +1,5 @@
 "use server";
-
+/** eslint-disable typescript-eslint/no-non-null-asserted-optional-chain */
 import { execute } from "@/graphql/execute";
 import { ConfigurableProduct, Query } from "@/types/backend";
 import { Category, Product } from "@/types/product";
