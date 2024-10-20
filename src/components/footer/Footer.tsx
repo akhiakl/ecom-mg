@@ -29,7 +29,7 @@ import Button from "../ui/Button";
 
 const Footer = () => {
   return (
-    <footer className="mx-auto container px-4 pb-6 pt-16 sm:px-6 lg:px-8">
+    <footer className="container mx-auto px-4 pb-6 pt-16 sm:px-6 lg:px-8">
       <div className="mt-16 grid grid-cols-1 gap-8 border-t border-gray-100 pt-16 md:grid-cols-4 lg:grid-cols-6">
         <div className="text-center sm:text-left">
           <p className="text-lg font-medium text-gray-900">About Us</p>
@@ -216,7 +216,7 @@ const Footer = () => {
                   type="email"
                   id="UserEmail"
                   placeholder="john@rhcp.com"
-                  className="w-full bg-transparent border-none focus:border-transparent focus:ring-transparent active:border-transparent active:ring-transparent sm:text-sm"
+                  className="w-full border-none bg-transparent focus:border-transparent focus:ring-transparent active:border-transparent active:ring-transparent sm:text-sm"
                 />
 
                 <Button>Subscribe</Button>
@@ -228,7 +228,14 @@ const Footer = () => {
 
       <div className="mt-16 border-t border-gray-100 pt-6 sm:flex sm:items-center sm:justify-between">
         <p className="text-center text-sm text-gray-500 sm:text-left">
-          Copyright &copy; 2022. All rights reserved.
+          Powered by
+          <a
+            className="ml-1 font-bold"
+            href="https://www.hyperui.dev/"
+            target="_blank"
+          >
+            HyperUI 🚀
+          </a>
         </p>
 
         <SocialLinks />

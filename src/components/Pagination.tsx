@@ -10,7 +10,7 @@ const Pagination = ({ className }: Props) => {
     <ol
       className={clsx(
         "flex justify-center gap-1 text-xs font-medium",
-        className
+        className,
       )}
     >
       <li>

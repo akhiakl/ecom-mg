@@ -3,13 +3,13 @@ import React, { PropsWithChildren } from "react";
 
 const NavbarWrapper = ({ children }: PropsWithChildren) => {
   return (
-    <header className="bg-white dark:bg-gray-900 dark:border-b border-gray-700 border-1">
-      <div className="mx-auto container px-4 sm:px-6 lg:px-8">
+    <header className="border-1 border-gray-700 bg-white dark:border-b dark:bg-gray-900">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center">
           <Link
             prefetch={true}
             href="/"
-            className="block font-extrabold text-gray-900 dark:text-gray-300 mr-5"
+            className="mr-5 block font-extrabold text-gray-900 dark:text-gray-300"
           >
             Ecom mg
           </Link>

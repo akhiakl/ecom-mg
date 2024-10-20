@@ -29,7 +29,7 @@ const Anchor = ({ children, className, onClick, ...props }: AnchorProps) => {
   return (
     <button
       type="button"
-      className={clsx("overflow-hidden block", className)}
+      className={clsx("block overflow-hidden", className)}
       onClick={(e) => {
         onClick?.(e);
         if (isOpen) {
@@ -53,16 +53,16 @@ const Content = ({ children, className, ...props }: ContentProps) => {
   return (
     <div
       className={clsx(
-        "absolute end-0 mt-1 rounded-md border border-gray-100 bg-white shadow-lg dark:border-gray-800 dark:bg-gray-900 transition",
+        "absolute end-0 mt-1 rounded-md border border-gray-100 bg-white shadow-lg transition dark:border-gray-800 dark:bg-gray-900",
         {
-          "invisible opacity-0 -z-10": !isOpen,
+          "invisible -z-10 opacity-0": !isOpen,
           "visible z-10": isOpen,
         },
-        className
+        className,
       )}
       {...props}
     >
-      {isOpen && <div className="p-2 flex-1">{children}</div>}
+      {isOpen && <div className="flex-1 p-2">{children}</div>}
     </div>
   );
 };
