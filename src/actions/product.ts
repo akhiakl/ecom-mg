@@ -104,7 +104,7 @@ const mapItemToProduct = (item: ConfigurableProduct): Product => ({
           label: val?.label!,
           value: val?.swatch_data?.value!,
           type: /^#[0-9A-F]{6}[0-9a-f]{0,2}$/i.test(
-            val?.swatch_data?.value ?? ""
+            val?.swatch_data?.value ?? "",
           )
             ? "color"
             : "text",
@@ -124,7 +124,7 @@ export async function fetchCategory(urlKey: string): Promise<Category> {
           eq: urlKey,
         },
       },
-    }
+    },
   );
 
   return {

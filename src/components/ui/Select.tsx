@@ -6,7 +6,7 @@ const Select = forwardRef<
 >(({ className, children, ...props }, forwardedRef) => (
   <select
     ref={forwardedRef}
-    className={`py-2 px-3 rounded border dark:bg-gray-800 border-gray-300 text-sm ${className}`}
+    className={`rounded border border-gray-300 px-3 py-2 text-sm dark:bg-gray-800 ${className}`}
     {...props}
   >
     {children}

@@ -16,11 +16,11 @@ type CategoryPageProps = {
 };
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { name, description, availableFilters, products } = await fetchCategory(
-    params.handle.join("/")
+    params.handle.join("/"),
   );
   return (
     <section>
-      <div className="mx-auto container px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <header>
           <h2 className="text-xl font-bold sm:text-3xl">{name}</h2>
 

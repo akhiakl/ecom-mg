@@ -13,14 +13,14 @@ const ProductCard = ({ product, imgPriority }: Props) => {
   return (
     <a
       href={`/products/${product.urlKey}`}
-      className="group block overflow-hidden relative bg-white rounded-sm"
+      className="group relative block overflow-hidden rounded-sm bg-white"
     >
       {product.badge?.text && (
         <span className="absolute right-0 top-0 z-10 rounded-bl-lg bg-rose-600 px-4 py-1 font-medium text-white shadow-md shadow-gray-800">
           {product.badge?.text}
         </span>
       )}
-      <div className="h-[350px] w-full relative">
+      <div className="relative h-[350px] w-full">
         <Image
           alt={product.imageAlt!}
           src={product.imageSrc!}
@@ -31,7 +31,7 @@ const ProductCard = ({ product, imgPriority }: Props) => {
         />
       </div>
 
-      <div className="relative border border-1 border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 p-6 pt-3">
+      <div className="border-1 relative border border-gray-100 bg-white p-6 pt-3 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100">
         <h3 className="text-base group-hover:underline group-hover:underline-offset-4">
           {product.name}
         </h3>
@@ -41,7 +41,7 @@ const ProductCard = ({ product, imgPriority }: Props) => {
 
           <span className="tracking-wider">{product.price}</span>
         </p>
-        <div className="mt-2 flex flex-col gap-2.5 min-h-16">
+        <div className="mt-2 flex min-h-16 flex-col gap-2.5">
           {product.options?.map((option) => (
             <VariantSelector
               items={option.values ?? []}

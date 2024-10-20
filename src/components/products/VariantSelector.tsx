@@ -19,7 +19,7 @@ const Selector = ({ type, value, id, label, name }: SelectorProps) => (
       value={value}
       id={id}
       name={name}
-      className="sr-only peer"
+      className="peer sr-only"
     />
     <label
       htmlFor={id}
@@ -27,10 +27,10 @@ const Selector = ({ type, value, id, label, name }: SelectorProps) => (
         backgroundColor: type === "color" ? value : undefined,
       }}
       className={clsx(
-        "flex justify-center items-center leading-none cursor-pointer transition hover:!opacity-100 peer-checked:ring ring-gray-900 dark:ring-gray-100",
+        "flex cursor-pointer items-center justify-center leading-none ring-gray-900 transition hover:!opacity-100 peer-checked:ring dark:ring-gray-100",
         type === "color"
           ? "size-6 rounded-full"
-          : "ring ring-1 peer-checked:ring-2 p-1"
+          : "p-1 ring ring-1 peer-checked:ring-2",
       )}
     >
       <span

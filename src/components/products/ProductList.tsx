@@ -18,7 +18,7 @@ const ProductList = async ({ products, filters }: ProductListProps) => {
   return (
     <>
       <div className="mt-8 flex items-center justify-between">
-        <div className="flex ">
+        <div className="flex">
           <IconButton icon="grid" />
           <IconButton icon="hamburger" />
         </div>
