@@ -1,5 +1,6 @@
 import { fetchCategory } from "@/actions/product";
 import ProductList from "@/components/products/ProductList";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   return [
@@ -15,9 +16,19 @@ type CategoryPageProps = {
   };
 };
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { name, description, availableFilters, products } = await fetchCategory(
-    params.handle.join("/"),
-  );
+  const {
+    id,
+    name,
+    description,
+    availableFilters,
+    availableSortOptions,
+    products,
+  } = await fetchCategory(params.handle.join("/"));
+
+  if (!id) {
+    notFound();
+  }
+
   return (
     <section>
       <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -29,7 +40,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           )}
         </header>
 
-        <ProductList filters={availableFilters} products={products ?? []} />
+        <ProductList
+          filters={availableFilters}
+          products={products ?? []}
+          sortOptions={availableSortOptions ?? []}
+        />
       </div>
     </section>
   );

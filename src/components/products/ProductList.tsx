@@ -3,15 +3,20 @@ import Pagination from "../Pagination";
 import ProductCard from "./ProductCard";
 import IconButton from "../ui/IconButton";
 import Select from "../ui/Select";
-import { Product, ProductFilter } from "@/types/product";
+import { Product, ProductFilter, SortOption } from "@/types/product";
 import FilterList from "./FilterList";
 
 type ProductListProps = {
   products: Product[];
   filters?: ProductFilter[];
+  sortOptions?: SortOption[];
 };
 
-const ProductList = async ({ products, filters }: ProductListProps) => {
+const ProductList = async ({
+  products,
+  filters,
+  sortOptions,
+}: ProductListProps) => {
   const device = await getDeviceType();
   const imagePriorityLimit =
     device === "mobile" ? 2 : device === "tablet" ? 4 : 8;
@@ -27,13 +32,15 @@ const ProductList = async ({ products, filters }: ProductListProps) => {
           <label htmlFor="SortBy" className="sr-only">
             SortBy
           </label>
-          <Select id="SortBy">
-            <option>Sort By</option>
-            <option value="Title, DESC">Title, DESC</option>
-            <option value="Title, ASC">Title, ASC</option>
-            <option value="Price, DESC">Price, DESC</option>
-            <option value="Price, ASC">Price, ASC</option>
-          </Select>
+          {sortOptions?.length && (
+            <Select id="SortBy" label="Sort By" className="capitalize">
+              {sortOptions?.map((sortOption) => (
+                <option key={sortOption.value} value={sortOption.value}>
+                  {sortOption.value}
+                </option>
+              ))}
+            </Select>
+          )}
         </div>
       </div>
 

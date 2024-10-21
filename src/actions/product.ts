@@ -9,7 +9,7 @@ const ProductsQuery = /* GraphQL */ `
     $pageSize: Int = 10
     $currentPage: Int = 1
     $sort: ProductAttributeSortInput = {}
-    $filter: ProductAttributeFilterInput = {}
+    $productFilter: ProductAttributeFilterInput = {}
     $includeCategory: Boolean = false
     $categoryFilter: CategoryFilterInput
   ) {
@@ -27,7 +27,7 @@ const ProductsQuery = /* GraphQL */ `
       pageSize: $pageSize
       currentPage: $currentPage
       sort: $sort
-      filter: $filter
+      filter: $productFilter
     ) {
       aggregations {
         attribute_code
@@ -36,6 +36,12 @@ const ProductsQuery = /* GraphQL */ `
         position
         options {
           count
+          label
+          value
+        }
+      }
+      sort_fields {
+        options {
           label
           value
         }
@@ -113,6 +119,13 @@ const mapItemToProduct = (item: ConfigurableProduct): Product => ({
 });
 
 export async function fetchCategory(urlKey: string): Promise<Category> {
+  console.log({
+    categoryFilter: {
+      url_path: {
+        eq: urlKey,
+      },
+    },
+  });
   const response: Pick<Query, "products" | "categories"> = await execute(
     ProductsQuery,
     {
@@ -121,6 +134,11 @@ export async function fetchCategory(urlKey: string): Promise<Category> {
       includeCategory: true,
       categoryFilter: {
         url_path: {
+          eq: urlKey,
+        },
+      },
+      productFilter: {
+        category_url_path: {
           eq: urlKey,
         },
       },
@@ -148,5 +166,13 @@ export async function fetchCategory(urlKey: string): Promise<Category> {
           value: option?.value!,
         })),
       })),
+    availableSortOptions: response?.products?.sort_fields?.options?.sort(
+      (a, b) =>
+        a.value === response?.products?.sort_fields
+          ? -1
+          : b.value === response?.products?.sort_fields?.default
+            ? 1
+            : 0,
+    ) as Category["availableSortOptions"],
   };
 }

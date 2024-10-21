@@ -39,6 +39,11 @@ export type ProductFilter = {
   position?: number;
 };
 
+export type SortOption = {
+  label: string;
+  value: string;
+};
+
 export type Category = {
   id: string;
   name: string;
@@ -46,4 +51,5 @@ export type Category = {
   description?: string;
   products?: Product[];
   availableFilters?: ProductFilter[];
+  availableSortOptions?: SortOption[];
 };

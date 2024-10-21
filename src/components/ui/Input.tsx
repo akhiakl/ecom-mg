@@ -32,7 +32,7 @@ type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
   type?: InputType;
 };
 
-const wrapperClassMap: Partial<Record<InputType, string>> = {
+const defaultClassMap: Partial<Record<InputType, string>> = {
   text: "relative block overflow-hidden rounded-md border border-gray-300 px-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 dark:border-gray-700 dark:bg-gray-800",
   checkbox: "flex cursor-pointer items-center items-start gap-2",
   radio: "flex cursor-pointer items-center items-start gap-2",
@@ -46,14 +46,14 @@ const inputClassMap: Partial<Record<InputType, string>> = {
 };
 const labelClassMap: Partial<Record<InputType, string>> = {
   text: "absolute start-3 top-3 -translate-y-1/2 text-xs transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs",
-  checkbox: "font-medium",
-  radio: "font-medium",
+  checkbox: "font-medium text-sm",
+  radio: "font-medium text-sm",
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, inputClassName, labelClassName, ...props }, forwardedRef) => {
     const defaultClassName =
-      wrapperClassMap[props?.type ?? "text"] ?? wrapperClassMap["text"];
+      defaultClassMap[props?.type ?? "text"] ?? defaultClassMap["text"];
     const inputDefaultClassName =
       inputClassMap[props?.type ?? "text"] ?? inputClassMap["text"];
     const labelDefaultClassName =
