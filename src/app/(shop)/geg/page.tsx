@@ -1,6 +1,7 @@
 import Skeleton from "@/components/Skeleton";
 import Button from "@/components/ui/Button";
 import IconButton from "@/components/ui/IconButton";
+import Input from "@/components/ui/Input";
 import React from "react";
 
 const Geg = () => {
@@ -37,6 +38,14 @@ const Geg = () => {
         <Skeleton height={12} width={100} />
         <Skeleton height={23} width="100%" />
         <Skeleton height={45} className="min-w-5" />
+      </div>
+      <div className="flex flex-col gap-3">
+        <Input type="checkbox" label="Text" />
+        <Input type="text" placeholder="test" />
+        <Input type="text" />
+        <Input type="radio" />
+        <Input type="date" />
+        <Input type="month" />
       </div>
     </div>
   );
