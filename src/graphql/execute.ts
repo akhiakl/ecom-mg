@@ -2,7 +2,10 @@ export async function execute<TResult, TVariables>(
   query: string,
   ...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
 ) {
-  const response = await fetch("https://www.aemshop.net/graphql", {
+  if (!process.env.ECOM_BACKEND_API_URL) {
+    throw new Error("Missing ECOM_BACKEND_API_URL environment variable");
+  }
+  const response = await fetch(process.env.ECOM_BACKEND_API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
