@@ -15,7 +15,8 @@ type CategoryPageProps = {
     handle: string[];
   };
 };
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage(props: Readonly<CategoryPageProps>) {
+  const params = props.params;
   const {
     id,
     name,
