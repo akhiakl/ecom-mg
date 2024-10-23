@@ -83,7 +83,7 @@ const Dropdown = ({
 }: DropdownProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  useClickOutside(ref, () => onClose?.());
+  useClickOutside<HTMLDivElement>(ref, () => onClose?.());
   return (
     <DropdownContext.Provider value={{ isOpen, onOpen, onClose }}>
       <div ref={ref} className={clsx("relative", className)}>

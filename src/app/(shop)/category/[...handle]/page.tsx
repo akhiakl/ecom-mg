@@ -11,12 +11,12 @@ export async function generateStaticParams() {
 }
 
 type CategoryPageProps = {
-  params: {
+  params: Promise<{
     handle: string[];
-  };
+  }>;
 };
-export default async function CategoryPage(props: Readonly<CategoryPageProps>) {
-  const params = props.params;
+export default async function CategoryPage(props: CategoryPageProps) {
+  const params = await props.params;
   const {
     id,
     name,

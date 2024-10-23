@@ -32,7 +32,7 @@ export type ProductFilterOption = {
 };
 
 export type ProductFilter = {
-  code?: string;
+  code: string;
   count?: number;
   label?: string;
   options?: ProductFilterOption[];

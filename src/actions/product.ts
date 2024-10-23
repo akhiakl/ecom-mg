@@ -168,9 +168,9 @@ export async function fetchCategory(urlKey: string): Promise<Category> {
       })),
     availableSortOptions: response?.products?.sort_fields?.options?.sort(
       (a, b) =>
-        a.value === response?.products?.sort_fields
+        a?.value === response?.products?.sort_fields
           ? -1
-          : b.value === response?.products?.sort_fields?.default
+          : b?.value === response?.products?.sort_fields?.default
             ? 1
             : 0,
     ) as Category["availableSortOptions"],
