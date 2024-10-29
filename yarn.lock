@@ -2703,6 +2703,11 @@ fbjs@^3.0.0:
     setimmediate "^1.0.5"
     ua-parser-js "^1.0.35"
 
+fetch-to-curl@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/fetch-to-curl/-/fetch-to-curl-0.6.0.tgz#4ed792de97582b15a1bc891297079ac60fbb01a5"
+  integrity sha512-Gsn0baHnENueQrtvKGikEkaAJhfQYDbSFnyZvI/qnwiZtdIwiuK6iJ0BAKzS3bEzpWyUr6SV9uB4H3HUwl/yZA==
+
 figures@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/figures/-/figures-3.2.0.tgz#625c18bd293c604dc4a8ddb2febf0c88341746af"

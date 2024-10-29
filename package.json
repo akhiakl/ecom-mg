@@ -27,6 +27,7 @@
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "eslint": "^8",
     "eslint-config-next": "15.0.1",
+    "fetch-to-curl": "^0.6.0",
     "graphql": "^16.9.0",
     "husky": "^9.1.6",
     "postcss": "^8",
@@ -38,5 +39,9 @@
   "resolutions": {
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+  },
+  "graphql": {
+    "schema": "schema.graphql",
+    "documents": "**/*.{graphql,js,ts,jsx,tsx}"
   }
 }

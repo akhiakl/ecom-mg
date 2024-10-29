@@ -7,11 +7,6 @@ const nextConfig = {
         hostname: "*.dummycachetest.com",
         port: "",
       },
-      {
-        protocol: "https",
-        hostname: "www.aemshop.net",
-        port: "",
-      },
     ],
   },
 };

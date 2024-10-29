@@ -2,7 +2,12 @@
 
 import Caret from "@/icons/Caret";
 import { ProductFilter } from "@/types/product";
-import React, { DetailsHTMLAttributes, useCallback, useState } from "react";
+import React, {
+  DetailsHTMLAttributes,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import Input from "../ui/Input";
 import Toggle from "../ui/Toggle";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
@@ -34,9 +39,14 @@ const FilterItem = ({ filter: { label, options, code } }: FilterItemProps) => {
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
   const createQueryString = useCallback(
-    (value: string) => {
+    (key: string, values: string[]) => {
       const params = new URLSearchParams(searchParams.toString());
-      params.append(code, value);
+
+      // Clear all current values for the key
+      params.delete(key);
+
+      // Add each value from the array
+      values.forEach((value) => params.append(key, value));
 
       return params.toString();
     },
@@ -45,26 +55,18 @@ const FilterItem = ({ filter: { label, options, code } }: FilterItemProps) => {
 
   const selectOption = (checked: boolean, value?: string) => {
     if (!value) return;
-    if (!checked) {
-      setSelectedOptions((prev) => prev.filter((option) => option !== value));
-      router.replace(pathname + "?" + createQueryString(value), {
-        scroll: false,
-      });
-      return;
-    }
-    if (value && checked && !selectedOptions.includes(value)) {
-      setSelectedOptions((prev) => [...prev, value]);
-      router.replace(pathname + "?" + createQueryString(value), {
-        scroll: false,
-      });
-    }
+
+    setSelectedOptions((prev) =>
+      checked ? [...prev, value] : prev.filter((option) => option !== value),
+    );
   };
-  const reset = () => {
-    setSelectedOptions([]);
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete(code);
-    router.push(pathname + "?" + params.toString(), { scroll: false });
-  };
+
+  useEffect(() => {
+    router.replace(pathname + "?" + createQueryString(code, selectedOptions), {
+      scroll: false,
+    });
+  }, [selectedOptions]);
+
   return (
     <details
       open={isOpen}
@@ -85,7 +87,7 @@ const FilterItem = ({ filter: { label, options, code } }: FilterItemProps) => {
           <button
             type="button"
             className="text-sm underline underline-offset-4"
-            onClick={reset}
+            onClick={() => setSelectedOptions([])}
           >
             Reset
           </button>

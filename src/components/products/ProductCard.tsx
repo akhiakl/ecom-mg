@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import Button from "../ui/Button";
 import VariantSelector from "./VariantSelector";
 import { Product } from "@/types/product";
+import AddToCartButton from "../AddToCartButton";
+import Link from "next/link";
 
 type Props = {
   product: Product;
@@ -11,7 +12,8 @@ type Props = {
 
 const ProductCard = ({ product, imgPriority }: Props) => {
   return (
-    <a
+    <Link
+      data-sku={product.sku}
       href={`/products/${product.urlKey}`}
       className="group relative block overflow-hidden rounded-sm bg-white"
     >
@@ -53,12 +55,10 @@ const ProductCard = ({ product, imgPriority }: Props) => {
           ))}
         </div>
         <div className="mt-4 flex gap-4">
-          <Button size="sm" variant="primary">
-            Add to Cart
-          </Button>
+          <AddToCartButton sku={product.sku} />
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 

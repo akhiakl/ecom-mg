@@ -1698,10 +1698,6 @@ interface CartItemInterface {
   """
   is_available: Boolean!
   """
-  Message to display when the product is not available with this selected option.
-  """
-  not_available_message: String
-  """
   Contains details about the price of the item, including taxes and discounts.
   """
   prices: CartItemPrices
@@ -1723,10 +1719,6 @@ type CartItemPrices {
   fixed_product_taxes: [FixedProductTax]
   """The value of the original unit price for the item."""
   original_item_price: Money!
-  """
-  The value of the original price multiplied by the quantity of the item.
-  """
-  original_row_total: Money!
   """
   The price of the item before any discounts were applied. The price that might include tax, depending on the configured display settings for cart.
   """
@@ -1805,10 +1797,6 @@ type CartPrices {
   gift_options: GiftOptionsPrices
   """The total, including discounts, taxes, shipping, and other fees."""
   grand_total: Money
-  """
-  The total of the cart, including discounts, shipping, and other fees without tax.
-  """
-  grand_total_excluding_tax: Money
   """The subtotal without any applied taxes."""
   subtotal_excluding_tax: Money
   """The subtotal including any applied taxes."""

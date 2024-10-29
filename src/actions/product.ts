@@ -3,97 +3,13 @@
 import { execute } from "@/graphql/execute";
 import { ConfigurableProduct, Query } from "@/types/backend";
 import { Category, Product } from "@/types/product";
+import { ProductsQuery } from "./graphql/queries";
 
-const ProductsQuery = /* GraphQL */ `
-  query productsSearch(
-    $pageSize: Int = 10
-    $currentPage: Int = 1
-    $sort: ProductAttributeSortInput = {}
-    $productFilter: ProductAttributeFilterInput = {}
-    $includeCategory: Boolean = false
-    $categoryFilter: CategoryFilterInput
-  ) {
-    categories(filters: $categoryFilter) @include(if: $includeCategory) {
-      items {
-        name
-        url_path
-        uid
-        meta_title
-        meta_keywords
-        meta_description
-      }
-    }
-    products(
-      pageSize: $pageSize
-      currentPage: $currentPage
-      sort: $sort
-      filter: $productFilter
-    ) {
-      aggregations {
-        attribute_code
-        count
-        label
-        position
-        options {
-          count
-          label
-          value
-        }
-      }
-      sort_fields {
-        options {
-          label
-          value
-        }
-      }
-      items {
-        uid
-        name
-        sku
-        url_key
-        image {
-          url
-          label
-        }
-        price_range {
-          minimum_price {
-            regular_price {
-              value
-              currency
-            }
-          }
-        }
-        ... on ConfigurableProduct {
-          configurable_options {
-            attribute_code
-            attribute_uid
-            uid
-            label
-            values {
-              uid
-              label
-              swatch_data {
-                value
-                ... on ImageSwatchData {
-                  thumbnail
-                }
-              }
-            }
-          }
-        }
-      }
-      page_info {
-        page_size
-        current_page
-        total_pages
-      }
-      total_count
-    }
-  }
-`;
+const colorHashRegex = /^#[0-9A-F]{6}[0-9a-f]{0,2}$/i;
 
 const mapItemToProduct = (item: ConfigurableProduct): Product => ({
-  id: item.sku!,
+  id: item.uid,
+  sku: item.sku!,
   name: item.name!,
   urlKey: item.url_key!,
   imageSrc: item.image?.url!,
@@ -109,9 +25,7 @@ const mapItemToProduct = (item: ConfigurableProduct): Product => ({
           id: val?.uid!,
           label: val?.label!,
           value: val?.swatch_data?.value!,
-          type: /^#[0-9A-F]{6}[0-9a-f]{0,2}$/i.test(
-            val?.swatch_data?.value ?? "",
-          )
+          type: colorHashRegex.test(val?.swatch_data?.value ?? "")
             ? "color"
             : "text",
         })) ?? [],
@@ -119,13 +33,6 @@ const mapItemToProduct = (item: ConfigurableProduct): Product => ({
 });
 
 export async function fetchCategory(urlKey: string): Promise<Category> {
-  console.log({
-    categoryFilter: {
-      url_path: {
-        eq: urlKey,
-      },
-    },
-  });
   const response: Pick<Query, "products" | "categories"> = await execute(
     ProductsQuery,
     {
@@ -167,12 +74,11 @@ export async function fetchCategory(urlKey: string): Promise<Category> {
         })),
       })),
     availableSortOptions: response?.products?.sort_fields?.options?.sort(
-      (a, b) =>
-        a?.value === response?.products?.sort_fields
-          ? -1
-          : b?.value === response?.products?.sort_fields?.default
-            ? 1
-            : 0,
+      (a, b) => {
+        if (a?.value === response?.products?.sort_fields) return -1;
+        if (b?.value === response?.products?.sort_fields?.default) return 1;
+        return 0;
+      },
     ) as Category["availableSortOptions"],
   };
 }
