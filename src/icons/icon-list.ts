@@ -56,6 +56,16 @@ const iconsList = {
       default: mod.default,
     })),
   ),
+  arrow: dynamic(() =>
+    import("./Arrow").then((mod) => ({
+      default: mod.default,
+    })),
+  ),
+  caret: dynamic(() =>
+    import("./Caret").then((mod) => ({
+      default: mod.default,
+    })),
+  ),
 };
 
 export default iconsList;

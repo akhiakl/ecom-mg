@@ -3,11 +3,13 @@ import React, { SVGAttributes } from "react";
 export interface IconProps extends SVGAttributes<SVGElement> {
   className?: string;
   strokeWidth?: number;
-  size?: "small" | "medium" | "large";
+  size?: "xsmall" | "small" | "medium" | "large";
   children: React.ReactNode;
+  direction?: "left" | "right" | "up" | "down";
 }
 
 const sizeMap = {
+  xsmall: 12,
   small: 16,
   medium: 20,
   large: 24,

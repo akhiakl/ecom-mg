@@ -9,7 +9,7 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  ({ icon, className, iconOptions, ...props }, forwardedRef) => {
+  ({ icon, className, iconOptions, children, ...props }, forwardedRef) => {
     const IconComponent = iconsList[icon];
     return (
       <button
@@ -20,6 +20,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         )}
         {...props}
       >
+        {children}
         <IconComponent {...iconOptions} />
       </button>
     );
