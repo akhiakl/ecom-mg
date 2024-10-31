@@ -66,6 +66,16 @@ const iconsList = {
       default: mod.default,
     })),
   ),
+  moon: dynamic(() =>
+    import("./Moon").then((mod) => ({
+      default: mod.default,
+    })),
+  ),
+  sun: dynamic(() =>
+    import("./Sun").then((mod) => ({
+      default: mod.default,
+    })),
+  ),
 };
 
 export default iconsList;

@@ -1,17 +1,11 @@
+"use client";
+import React from "react";
 import { ProductOptionValue } from "@/types/product";
 import clsx from "clsx";
-import React from "react";
 
 type SelectorProps = ProductOptionValue & {
   name?: string;
 };
-type Props = {
-  label?: string;
-  id: string;
-  productId: string;
-  items: ProductOptionValue[];
-};
-
 const Selector = ({ type, value, id, label, name }: SelectorProps) => (
   <div>
     <input
@@ -23,6 +17,10 @@ const Selector = ({ type, value, id, label, name }: SelectorProps) => (
     />
     <label
       htmlFor={id}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
       style={{
         backgroundColor: type === "color" ? value : undefined,
       }}
@@ -44,27 +42,4 @@ const Selector = ({ type, value, id, label, name }: SelectorProps) => (
   </div>
 );
 
-const VariantSelector = ({ label, id, productId, items }: Props) => {
-  return (
-    <form>
-      {label && (
-        <fieldset>
-          <legend className="sr-only">{label}</legend>
-        </fieldset>
-      )}
-
-      <div className="flex flex-wrap gap-1 [&:hover_label]:opacity-75">
-        {items.map((item) => (
-          <Selector
-            key={item.id}
-            {...item}
-            name={`${productId}_${id}`}
-            id={`${productId}_${id}_${item.id}`}
-          />
-        ))}
-      </div>
-    </form>
-  );
-};
-
-export default VariantSelector;
+export default Selector;

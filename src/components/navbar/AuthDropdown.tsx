@@ -10,6 +10,9 @@ type Props = {
 
 const AuthDropdown = ({ className }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const isDarkNow =
+    typeof document !== "undefined" &&
+    document?.documentElement.getAttribute("data-mode") === "dark";
   return (
     <Dropdown
       isOpen={isOpen}
@@ -40,17 +43,14 @@ const AuthDropdown = ({ className }: Props) => {
             },
             {
               id: "4",
-              title: "Logout",
+              title: isDarkNow ? "Switch to Light" : "Switch to Dark",
               action: () => {
-                // Handle logout logic
-                const isDarkNow =
-                  document.documentElement.getAttribute("data-mode") === "dark";
                 document.documentElement.setAttribute(
                   "data-mode",
                   isDarkNow ? "light" : "dark",
                 );
               },
-              icon: "logout",
+              icon: isDarkNow ? "sun" : "moon",
             },
           ]}
           onMenuItemClick={() => setIsOpen(false)}
