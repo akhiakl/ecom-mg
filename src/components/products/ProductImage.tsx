@@ -9,9 +9,9 @@ type Props = ImageProps & {
 };
 
 const ProductImage = ({ productIndex, ...props }: Props) => {
-  const isMobile = useMediaQuery("(min-width: 640)");
-  const isTablet = useMediaQuery("(min-width: 1024px)");
-  const imagePriorityLimit = isMobile ? 2 : isTablet ? 4 : 8;
+  const isTablet = useMediaQuery("(min-width: 640)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const imagePriorityLimit = isDesktop ? 8 : isTablet ? 4 : 2;
   return (
     <Image
       fill
