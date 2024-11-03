@@ -13,7 +13,7 @@ const Skeleton = forwardRef<HTMLDivElement, Props>(
         ref={forwardedRef}
         style={props}
         className={clsx(
-          "animate-pulse rounded-full bg-gray-200 dark:bg-gray-700",
+          "animate-pulse bg-gray-200 dark:bg-gray-700",
           className,
         )}
       ></div>

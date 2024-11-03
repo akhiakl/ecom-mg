@@ -1,4 +1,3 @@
-import { getDeviceType } from "@/utils/device";
 import Pagination from "../Pagination";
 import ProductCard from "./ProductCard";
 import IconButton from "../ui/IconButton";
@@ -12,14 +11,7 @@ type ProductListProps = {
   sortOptions?: SortOption[];
 };
 
-const ProductList = async ({
-  products,
-  filters,
-  sortOptions,
-}: ProductListProps) => {
-  const device = await getDeviceType();
-  const imagePriorityLimit =
-    device === "mobile" ? 2 : device === "tablet" ? 4 : 8;
+const ProductList = ({ products, filters, sortOptions }: ProductListProps) => {
   return (
     <>
       <div className="mt-8 flex items-center justify-between">
@@ -56,10 +48,7 @@ const ProductList = async ({
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {products?.map((product, idx) => (
               <li key={product.id}>
-                <ProductCard
-                  product={product}
-                  imgPriority={idx < imagePriorityLimit}
-                />
+                <ProductCard product={product} productIndex={idx} />
               </li>
             ))}
           </ul>

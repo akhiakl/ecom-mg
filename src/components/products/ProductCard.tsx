@@ -1,16 +1,16 @@
-import Image from "next/image";
 import React from "react";
 import VariantSelector from "./VariantSelector";
 import { Product } from "@/types/product";
 import AddToCartButton from "../AddToCartButton";
 import Link from "next/link";
+import ProductImage from "./ProductImage";
 
 type Props = {
   product: Product;
-  imgPriority?: boolean;
+  productIndex: number;
 };
 
-const ProductCard = ({ product, imgPriority }: Props) => {
+const ProductCard = ({ product, productIndex }: Props) => {
   return (
     <Link
       data-sku={product.sku}
@@ -23,13 +23,10 @@ const ProductCard = ({ product, imgPriority }: Props) => {
         </span>
       )}
       <div className="relative h-[350px] w-full">
-        <Image
+        <ProductImage
           alt={product.imageAlt!}
           src={product.imageSrc!}
-          fill
-          priority={imgPriority}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-          className="object-contain transition duration-500 group-hover:scale-105"
+          productIndex={productIndex}
         />
       </div>
 

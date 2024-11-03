@@ -1,6 +1,8 @@
 import { fetchCategory } from "@/actions/product";
 import ProductList from "@/components/products/ProductList";
+import ProductListLoader from "@/components/products/ProductListLoader";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 export async function generateStaticParams() {
   return [
@@ -41,11 +43,13 @@ export default async function CategoryPage(props: CategoryPageProps) {
           )}
         </header>
 
-        <ProductList
-          filters={availableFilters}
-          products={products ?? []}
-          sortOptions={availableSortOptions ?? []}
-        />
+        <Suspense fallback={<ProductListLoader />}>
+          <ProductList
+            filters={availableFilters}
+            products={products ?? []}
+            sortOptions={availableSortOptions ?? []}
+          />
+        </Suspense>
       </div>
     </section>
   );
