@@ -7,7 +7,7 @@ import { Suspense } from "react";
 export async function generateStaticParams() {
   return [
     {
-      handle: ["1"],
+      handle: ["venia-bottoms"],
     },
   ];
 }

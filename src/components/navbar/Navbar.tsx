@@ -11,7 +11,7 @@ type Menu = {
 };
 
 const menu: Menu[] = [
-  { title: "Category", path: "/category/1" },
+  { title: "Category", path: "/category/venia-bottoms" },
   { title: "Geg", path: "/geg" },
   { title: "Products", path: "/products" },
 ];
